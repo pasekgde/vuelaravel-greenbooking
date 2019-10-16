@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\Auth\User\UserSessionController;
 use App\Http\Controllers\Backend\Auth\User\UserPasswordController;
 use App\Http\Controllers\Backend\Auth\User\UserConfirmationController;
 
+
 // All route names are prefixed with 'admin.auth'.
 Route::group([
     'prefix' => 'auth',
@@ -72,4 +73,6 @@ Route::group([
             Route::delete('/', [RoleController::class, 'destroy'])->name('role.destroy');
         });
     });
+
+    
 });

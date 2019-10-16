@@ -51,6 +51,13 @@
                                 @lang('labels.backend.access.roles.management')
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{
+                                active_class(Route::is('admin/booking/booking*'))
+                            }}" href="{{ route('admin.databooking.booking.halbooking') }}">
+                                Booking Data
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

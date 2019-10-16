@@ -21,6 +21,8 @@
     {{ style(mix('css/backend.css')) }}
 
     @stack('after-styles')
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 {{--
@@ -80,5 +82,7 @@
     {!! script(mix('js/vendor.js')) !!}
     {!! script(mix('js/backend.js')) !!}
     @stack('after-scripts')
+    
+    
 </body>
 </html>

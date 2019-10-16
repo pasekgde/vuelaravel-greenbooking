@@ -1,6 +1,15 @@
 <?php
 
 use App\Http\Controllers\LanguageController;
+//use App\Http\Controllers\Backend\Booking\BookingController;
+
+// All route names are prefixed with 'admin.'.
+Route::resource('/showbooking', 'Backend\Booking\BookingController');
+Route::post('/createbooking', array(
+        'as'=>'create', 
+        'uses'=> 'Backend\Booking\BookingController@store')
+    );
+Route::resource('/updatedata', 'Backend\Booking\BookingController');
 
 /*
  * Global Routes
