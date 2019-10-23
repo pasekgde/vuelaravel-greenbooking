@@ -78,13 +78,10 @@ class BookingController extends Controller
     public function update(Request $request, $id)
     {
         
+        $data = Booking::findOrFail($id);
+        $data->update($request->all());
 
-        $id = $this->input->post('id');
-          $data = array(
-                   'fullname'=> $this->input->post('fullname'),  
-            );
-
-        return $booking;
+        return $data;
 
     }
 
@@ -96,6 +93,8 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $datadelete = Booking::findOrFail($id);
+        $datadelete->delete();
+        return $datadelete;
     }
 }

@@ -9,10 +9,10 @@
         </button>
       </div>
       <div class="modal-body">
-        
+        <input type="hidden" v-model="editBooking.id">
           <div class="col">
             <div class="form-group row">
-              <div class="col col-md-3">Firsname</div>  
+              <div class="col col-md-3">Fullname</div>  
                 <div class="col-md-9">
                   <input type="text" class="form-control" v-model="editBooking.fullname" placeholder="Fullname" autofocus="true" required="true">
                 </div><!--col-->
@@ -356,7 +356,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" @click="updateData()" class="btn btn-primary">Save changes</button>
+        <button type="button" @click="updateData(editBooking)" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

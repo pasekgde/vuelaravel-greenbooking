@@ -8,11 +8,8 @@
             <i class="fas fa-edit"></i>
         </a>
 
-        <a href="#"
-                       data-method="delete" class="btn btn-danger"
-                       data-trans-button-cancel="@lang('buttons.general.cancel')"
-                       data-trans-button-confirm="@lang('buttons.general.crud.delete')"
-                       data-trans-title="@lang('strings.backend.general.are_you_sure')"
-                       class="dropdown-item">@lang('buttons.general.crud.delete')</a>
+        <a href="#" @click="selectBooking(book); deleteData(book)" title="@lang('buttons.general.crud.edit')" class="btn btn-danger">
+            <i class="fas fa-trash"></i>
+        </a>
     </div>
 

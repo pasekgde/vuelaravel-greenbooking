@@ -9,7 +9,14 @@ Route::post('/createbooking', array(
         'as'=>'create', 
         'uses'=> 'Backend\Booking\BookingController@store')
     );
-Route::resource('/updatedata', 'Backend\Booking\BookingController');
+Route::put('/updatedata/{id}', array(
+        'as'=>'updatedata', 
+        'uses'=> 'Backend\Booking\BookingController@update')
+    );
+Route::delete('/deletedata/{id}', array(
+        'as'=>'deletedata', 
+        'uses'=> 'Backend\Booking\BookingController@destroy')
+    );
 
 /*
  * Global Routes

@@ -8,6 +8,7 @@ var v = new Vue({
       selectedValue:'',
       databooking:[],
       booking: {
+        id :'',
         fullname:'',
         country:'Indonesia',
         date:'',
@@ -38,27 +39,46 @@ var v = new Vue({
     },
 
   	createdData() {
-          var formData = v.formData(v.booking)
             axios.post(this.url+'/createbooking', this.booking)
             .then(response => {
               console.log(response);
+              this.msgSuccess();
               this.booking = response.data;
-              window.history.back()
+              location.href = "booking";
         })
         .catch(e => {
           this.errors.push(e)
           })
     },
-    updateData(){
-            var formData = v.formData(v.editBooking); 
-            axios.put(this.url+"/updatedata", formData).then(function(response){
+    updateData(editBooking){ 
+            axios.put(this.url+"/updatedata/" + editBooking.id, this.editBooking)
+            .then(function(response){
                 if(response.data.error){
-                    console.log('data error')
+                  v.msgError();
+                  console.log(response.data.error)
                 }else{
-                      console.log('data sukses')                
+                  v.msgSuccess();
+                  $('#editModal').modal('hide')                                      
                 }
             })
         },
+    deleteData(editBooking){ 
+      Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.value) {
+            axios.delete(this.url+"/deletedata/" + editBooking.id, this.editBooking)
+            this.msgDeleteSuccess();
+            this.showData();
+          }
+        })
+      },
     formData(obj) {
       var formData = new FormData();
             for (var key in obj) {
@@ -76,8 +96,38 @@ var v = new Vue({
     },
     selectBooking(book){
             v.editBooking = book;
-        }
-    
+            console.log(v.editBooking);
+        },
+
+
+
+    //khusus msg
+    msgSuccess(){
+      Swal.fire({
+        position: 'center',
+        type: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    },
+    msgError(){
+      Swal.fire({
+        position: 'center',
+        type: 'error',
+        title: 'Opss..',
+        text: 'Something went wrong!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    },
+    msgDeleteSuccess(){
+      Swal.fire(
+        'Deleted!',
+        'Your file has been deleted.',
+        'success'
+      )
+    }
   }
   //end create data booking
 })
